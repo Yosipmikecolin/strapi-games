@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "games",
+  "info": {
+    "singularName": "game",
+    "pluralName": "games",
+    "displayName": "Games",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "plaftfoms": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::plaftfom.plaftfom",
+      "mappedBy": "games"
+    },
+    "price": {
+      "required": true,
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "integer"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "video": {
+      "type": "string"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "wallpaper": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "releaseDate": {
+      "type": "date",
+      "required": true
+    },
+    "wishlist": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wishlist.wishlist",
+      "inversedBy": "games"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Acción",
+        "Aventura",
+        "Estrategia",
+        "Rol (RPG)",
+        "Deportes",
+        "Simulación",
+        "Survival",
+        "Multijugador",
+        "Horror",
+        "Mundo abierto",
+        "Fantasía"
+      ]
+    }
+  }
+}

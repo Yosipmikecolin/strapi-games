@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipping_costs",
+  "info": {
+    "singularName": "shipping-cost",
+    "pluralName": "shipping-costs",
+    "displayName": "ShippingCost",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cost": {
+      "type": "integer",
+      "default": 0,
+      "max": 10000,
+      "min": 1000
+    }
+  }
+}
