@@ -16,13 +16,20 @@ export default {
           items: products,
           back_urls: {
             success: "https://ecommerce-games-taupe.vercel.app/",
+            failure: "https://ecommerce-games-taupe.vercel.app/",
+            pending: "https://ecommerce-games-taupe.vercel.app/",
           },
           auto_return: "approved",
+          payment_methods: {
+            installments: 12,
+          },
+          notification_url:
+            "https://ecommerce-games-taupe.vercel.app/api/webhooks/mercado-pago",
         },
       });
 
-      const { id, init_point } = result;
-      return { id, init_point };
+      const { id, sandbox_init_point } = result;
+      return { id, sandbox_init_point };
     } catch (error) {
       console.error("Error al crear la preferencia de pago:", error);
       return ctx.badRequest("Error al crear la preferencia de pago");
