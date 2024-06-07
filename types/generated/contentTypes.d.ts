@@ -854,8 +854,8 @@ export interface ApiGameGame extends Schema.CollectionType {
     slug: Attribute.UID<'api::game.game', 'title'> & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
     video: Attribute.String;
-    cover: Attribute.Media & Attribute.Required;
-    wallpaper: Attribute.Media;
+    cover: Attribute.Media<'images', true> & Attribute.Required;
+    wallpaper: Attribute.Media<'images', true>;
     releaseDate: Attribute.Date & Attribute.Required;
     wishlist: Attribute.Relation<
       'api::game.game',
@@ -905,9 +905,14 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     totalPayment: Attribute.Decimal & Attribute.Required;
-    idPayment: Attribute.String;
-    addressShipping: Attribute.JSON & Attribute.Required;
     products: Attribute.JSON & Attribute.Required;
+    idPayment: Attribute.BigInteger & Attribute.Required;
+    dateOrder: Attribute.Date;
+    address: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::address.address'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -940,7 +945,7 @@ export interface ApiPlaftfomPlaftfom extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::plaftfom.plaftfom', 'title'> & Attribute.Required;
     order: Attribute.Integer & Attribute.Required;
-    icon: Attribute.Media & Attribute.Required;
+    icon: Attribute.Media<'images'> & Attribute.Required;
     games: Attribute.Relation<
       'api::plaftfom.plaftfom',
       'manyToMany',

@@ -21,17 +21,21 @@
       "type": "decimal",
       "required": true
     },
-    "idPayment": {
-      "type": "string",
-      "required": false
-    },
-    "addressShipping": {
-      "type": "json",
-      "required": true
-    },
     "products": {
       "type": "json",
       "required": true
+    },
+    "idPayment": {
+      "required": true,
+      "type": "biginteger"
+    },
+    "dateOrder": {
+      "type": "date"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
     }
   }
 }
