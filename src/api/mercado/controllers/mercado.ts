@@ -8,7 +8,7 @@ const preference = new Preference(client);
 export default {
   createPreference: async (ctx) => {
     try {
-      const { products, filename, token, address, user_id } = ctx.request.body;
+      const { products, token, address, user_id } = ctx.request.body;
 
       //* Crea una nueva preferencia de pago con los datos del producto
       const result = await preference.create({
@@ -23,14 +23,7 @@ export default {
           payment_methods: {
             installments: 12,
           },
-          notification_url:
-            "https://ecommerce-games-taupe.vercel.app/api/webhooks/mercado-pago",
-          metadata: {
-            filename,
-            token,
-            address,
-            user_id,
-          },
+          notification_url: `https://ecommerce-games-taupe.vercel.app/api/webhooks/mercado-pago?filename=${user_id}&token=${token}&address=${address}&user_id=${user_id}`,
         },
       });
 
