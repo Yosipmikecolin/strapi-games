@@ -831,6 +831,38 @@ export interface ApiAddressAddress extends Schema.CollectionType {
   };
 }
 
+export interface ApiBannerBanner extends Schema.SingleType {
+  collectionName: 'banners';
+  info: {
+    singularName: 'banner';
+    pluralName: 'banners';
+    displayName: 'Banner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    portada: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::banner.banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::banner.banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGameGame extends Schema.CollectionType {
   collectionName: 'games';
   info: {
@@ -978,7 +1010,7 @@ export interface ApiShippingCostShippingCost extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     cost: Attribute.Integer &
@@ -992,7 +1024,6 @@ export interface ApiShippingCostShippingCost extends Schema.CollectionType {
       Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::shipping-cost.shipping-cost',
       'oneToOne',
@@ -1067,6 +1098,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::address.address': ApiAddressAddress;
+      'api::banner.banner': ApiBannerBanner;
       'api::game.game': ApiGameGame;
       'api::order.order': ApiOrderOrder;
       'api::plaftfom.plaftfom': ApiPlaftfomPlaftfom;
